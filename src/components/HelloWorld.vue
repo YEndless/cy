@@ -24,8 +24,6 @@
     <img v-image-preview src="https://avatar.csdn.net/5/2/1/3_qq_39510798.jpg"/>
 
 
-
-
     <div class="edit_container">
       <quill-editor
         v-model="content"
@@ -56,10 +54,8 @@
         articles:[],
         data:[],
         list:[],
-        content: `<p></p><p><br></p><ol><li><strong><em>Or drag/paste an image here.</em></strong></li><li><strong><em>rerew</em></strong></li><li><strong><em>rtrete</em></strong></li><li><strong><em>tytrytr</em></strong></li><li><strong><em>uytu</em></strong></li></ol>`,
+        content: `<ol><li><strong><em>Or</em></strong></li><li><strong><em>rerew</em></strong></li><li><strong><em>rtrete</em></strong></li><li><strong><em>tytrytr</em></strong></li><li><strong><em>uytu</em></strong></li></ol>`,
         editorOption: {}
-
-
       }
     },
     created(){

@@ -1,45 +1,39 @@
 <template>
-  <div >
-    <div >
-      <div class="ugcBox-inner">
-        <ul class="bui-box ugc-tab-list">
-          <li class="bui-left ugc-tab-item current">发布图文</li>
-          <li class="bui-left ugc-tab-item">发布视频</li>
-        </ul>
-        <div class="ugc-content">
-          <div >
-            <div class="upload-box">
+  <div class="ugcBox-inner">
+    <ul class="bui-box ugc-tab-list">
+      <li class="bui-left ugc-tab-item current">发布图文</li>
+      <li class="bui-left ugc-tab-item">发布视频</li>
+    </ul>
+    <div class="ugc-content">
+      <div >
+        <div class="upload-box">
                   <textarea @input="descInput"
                             v-model="desc"
                             placeholder="有什么新鲜事想告诉大家"
                             class="title-input"
                             maxlength="2000">
                   </textarea>
-              <p class="words-number">{{txtVal}}/2000字</p>
+          <p class="words-number">{{txtVal}}/2000字</p>
 
-              <div class="bui-box upload-footer">
-                <div class="bui-left">
+          <div class="bui-box upload-footer">
+            <div class="bui-left">
                       <span class="show-image-uploader show-uploader">
                         <img src="http://p3.pstatp.com/origin/b76b00091cadfe239a6a" class="icon">
                         <span>添加图片</span>
                       </span>
-                  <span class="show-emoji">
+              <span class="show-emoji">
                         <img src="http://p3.pstatp.com/origin/b76b00091cadfe239a6a" class="icon">
                       </span>
-                </div>
-                <div class="bui-right">
-                  <span class="msg-tip"></span>
-                  <a class="upload-publish">发布</a>
-                </div>
-              </div>
+            </div>
+            <div class="bui-right">
+              <span class="msg-tip"></span>
+              <a class="upload-publish">发布</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <v-article-title></v-article-title>
   </div>
-
 </template>
 
 <script>

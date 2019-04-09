@@ -1,153 +1,32 @@
 <template>
     <div class="y-wrap">
       <div id="header">
-        <div style="height: 34px; background: #222;">
-          <div class="y-box wtopbar">
-            <div class="y-left y-nav-topbar">
-              <div class="nav">
-                <ul class="y-box nav-list">
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/">推荐</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_hot/" >热点</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/video/">视频</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_image/">图片</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_entertainment/">娱乐</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_tech/">科技</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_car/">汽车</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_sports/">体育</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_finance/">财经</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_military/">军事</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_world/">国际</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_fashion/">时尚</a>
-                  </li>
-                  <li class="y-left nav-item">
-                    <a target="_blank" class="nav-link " href="/ch/news_travel/" >旅游</a>
-                  </li><!--riot placeholder-->
-                  <!--<li class="y-left nav-item nav-more">-->
-                    <!--<a class="nav-link" href="javascript:;"> 更多<i class="y-icon icon-more"></i> </a>-->
-                    <!--<div class="nav-layer">-->
-                      <!--<ul class="nav-more-list">-->
-                        <!--<li class="nav-more-item">-->
-                          <!--<a target="_blank" href="/ch/news_baby/" >育儿</a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-more-item">-->
-                          <!--<a target="_blank" href="/ch/news_regimen/">养生</a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-more-item">-->
-                          <!--<a target="_blank" href="/ch/news_essay/">美文</a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-more-item">-->
-                          <!--<a target="_blank" href="/ch/news_game/">游戏</a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-more-item">-->
-                          <!--<a target="_blank" href="/ch/news_history/">历史</a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-more-item">-->
-                          <!--<a target="_blank" href="/ch/news_food/">美食</a>-->
-                        <!--</li>-->
-                      <!--</ul>-->
-                    <!--</div>-->
-                  <!--</li>-->
-                </ul>
-              </div>
-            </div>
-            <ul class="y-right mgr">
-              <li class="tb-item userbox1">
-                <div>
-                  <div class="y-box wuserbox">
-                    <div class="y-right username">
-                      <a class="user-head" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/92287581804/">
-                        <div class="user-image">
-                          <img onload="this.style.opacity=1;" src="//p3.pstatp.com/thumb/5d4a000cdeed408dc66f" style="opacity: 1;">
-                        </div>
-                        <span>夜未央</span>
-                      </a>
-                      <div class="user-layer">
-                        <ul>
-                          <li>
-                            <a class="layer-item" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/92287581804/?tab=favourite">我的收藏</a>
-                          </li>
-                          <li>
-                            <a class="layer-item" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/relation/92287581804/?tab=following">我的关注</a>
-                          </li>
-                          <li>
-                            <a class="layer-item" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/relation/92287581804/?tab=followed">我的粉丝</a>
-                          </li>
-                          <li>
-                            <a href="https://sso.toutiao.com/logout/" class="layer-item" rel="nofollow">退出</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="tb-item">
-                <a class="tb-link" href="javascript:void(0)">反馈</a>
-              </li>
-              <li class="tb-item">
-                <a class="tb-link" href="" target="_blank">投诉侵权</a>
-              </li>
-              <li class="tb-item">
-                <a class="tb-link" href="/about/">头条产品</a>
-                <div class="layer">
-                  <ul>
-                    <li>
-                      <a href="" class="layer-item" target="_blank">问答</a>
-                    </li>
-                    <li>
-                      <a href="" class="layer-item" target="_blank" >头条号</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+
+        <v-header1></v-header1>
 
         <div class="middlebar">
           <div class="y-box middlebar-inner">
             <div class="y-left logo-box">
-              <a class="logo-link" href="/" ga_event="go_home">
+              <a class="logo-link" href="/">
                 <img class="logo" src="//s3.pstatp.com/toutiao/resource/ntoutiao_web/static/image/logo_271e845.png">
               </a>
             </div>
 
             <div class="y-right">
               <div style="margin-top: 9px; width: 340px;">
-                <div name="searchBox" class="wsearch">
-                  <form name="searchForm" action="/search/" method="get" target="_blank">
-                    <div name="inputbox" class="y-box input-group" style="border-color: rgb(232, 232, 232);">
-                      <input class="y-left input-text" name="keyword" autocomplete="off" ga_event="mh_search" type="text" placeholder="请输入关键字">
-                      <div class="y-right btn-submit">
-                        <button type="submit" href="javascript:;">
-                        <i class="y-icon icon-search" ga_event="mh_search"></i>
-                      </button>
-                      </div>
-                    </div>
-                  </form>
+                <div class="wsearch">
+                  <div name="inputbox"
+                       class="y-box input-group"
+                       style="border-color: rgb(232, 232, 232);">
+                    <input class="y-left input-text"
+                           type="text"
+                           placeholder="请输入关键字"
+                           v-model="searchVal">
+                    <router-link target="_blank" :to="{ path:'/goodsDetail', query: { searchContent: searchVal} }">
+                      <el-button type="primary" icon="el-icon-search" class="icon-search">
+                      </el-button>
+                    </router-link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,12 +104,18 @@
 </template>
 
 <script>
+  import vHeader1 from './Header1'
+
     export default {
         name: "userCenter",
+      components:{
+          vHeader1
+      },
       data(){
           return {
             id: this.$route.params.id,
-            users: []
+            users: [],
+            searchVal:"",
           }
       },
       created(){
@@ -290,34 +175,34 @@
   .y-wrap .y-left {
     float: left;
   }
-  .y-nav-topbar .nav {
-    position: relative;
-    height: 34px;
-    line-height: 34px;
-    background: 0 0;
-    color: #fff;
-  }
-  .y-nav-topbar .nav-list {
-    padding: 0 20px;
-  }
-  .y-nav-topbar .nav-item {
-    font-size: 13px;
-    font-weight: 500;
-    margin-right: 20px;
-    width: 26px;
-    white-space: nowrap;
-  }
+  /*.y-nav-topbar .nav {*/
+    /*position: relative;*/
+    /*height: 34px;*/
+    /*line-height: 34px;*/
+    /*background: 0 0;*/
+    /*color: #fff;*/
+  /*}*/
+  /*.y-nav-topbar .nav-list {*/
+    /*padding: 0 20px;*/
+  /*}*/
+  /*.y-nav-topbar .nav-item {*/
+    /*font-size: 13px;*/
+    /*font-weight: 500;*/
+    /*margin-right: 20px;*/
+    /*width: 26px;*/
+    /*white-space: nowrap;*/
+  /*}*/
   li {
     list-style: none;
   }
-  .y-nav-topbar .nav-link {
-    color: #fff;
-    border: 0;
-  }
-  .y-nav-topbar .nav-item.nav-more {
-    position: relative;
-    margin-right: 0;
-  }
+  /*.y-nav-topbar .nav-link {*/
+    /*color: #fff;*/
+    /*border: 0;*/
+  /*}*/
+  /*.y-nav-topbar .nav-item.nav-more {*/
+    /*position: relative;*/
+    /*margin-right: 0;*/
+  /*}*/
   .y-right {
     float: right;
   }
@@ -329,57 +214,57 @@
   /*.wtopbar .tb-item:first-child {*/
   /*border: 0;*/
   /*}*/
-  .tb-item {
-    position: relative;
-    float: left;
-    border-left: 1px solid #3a3a3a;
-  }
-   .tb-link {
-    padding: 0 10px;
-    color: #fff;
-  }
- .layer {
-    display: none;
-    position: absolute;
-    border: 1px solid #d9d9d9;
-    background: #fff;
-    z-index: 20;
-    font-size: 14px;
-    right: 0;
-    width: 116px;
-  }
-  .wuserbox {
-    position: relative;
-    font-size: 14px;
-    padding-right: 14px;
-    color: #fff;
-  }
-  .wuserbox .username {
-    position: relative;
-    text-align: center;
-    font-size: 14px;
-    color: #fff;
-  }
+  /*.tb-item {*/
+    /*position: relative;*/
+    /*float: left;*/
+    /*border-left: 1px solid #3a3a3a;*/
+  /*}*/
+   /*.tb-link {*/
+    /*padding: 0 10px;*/
+    /*color: #fff;*/
+  /*}*/
+ /*.layer {*/
+    /*display: none;*/
+    /*position: absolute;*/
+    /*border: 1px solid #d9d9d9;*/
+    /*background: #fff;*/
+    /*z-index: 20;*/
+    /*font-size: 14px;*/
+    /*right: 0;*/
+    /*width: 116px;*/
+  /*}*/
+  /*.wuserbox {*/
+    /*position: relative;*/
+    /*font-size: 14px;*/
+    /*padding-right: 14px;*/
+    /*color: #fff;*/
+  /*}*/
+  /*.wuserbox .username {*/
+    /*position: relative;*/
+    /*text-align: center;*/
+    /*font-size: 14px;*/
+    /*color: #fff;*/
+  /*}*/
 
-  .wuserbox .user-head {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 160px;
-    color: #fff;
-  }
+  /*.wuserbox .user-head {*/
+    /*display: inline-block;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*max-width: 160px;*/
+    /*color: #fff;*/
+  /*}*/
 
-  .wuserbox .user-head .user-image {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    vertical-align: middle;
-    margin-right: 6px;
-    margin-top: -2px;
-    background-color: #efefef;
-  }
+  /*.wuserbox .user-head .user-image {*/
+    /*display: inline-block;*/
+    /*width: 24px;*/
+    /*height: 24px;*/
+    /*border-radius: 50%;*/
+    /*vertical-align: middle;*/
+    /*margin-right: 6px;*/
+    /*margin-top: -2px;*/
+    /*background-color: #efefef;*/
+  /*}*/
   .wuserbox .user-head img {
     display: block;
     width: 100%;
@@ -392,30 +277,30 @@
   .wuserbox .username span {
     color: #fff;
   }
-  .wuserbox .user-layer {
-    display: none;
-    position: absolute;
-    top: 34px;
-    right: 0;
-    border: 1px solid #d9d9d9;
-    background: #fff;
-    z-index: 22;
-    font-size: 14px;
-    width: 130px;
-  }
+  /*.wuserbox .user-layer {*/
+    /*display: none;*/
+    /*position: absolute;*/
+    /*top: 34px;*/
+    /*right: 0;*/
+    /*border: 1px solid #d9d9d9;*/
+    /*background: #fff;*/
+    /*z-index: 22;*/
+    /*font-size: 14px;*/
+    /*width: 130px;*/
+  /*}*/
 
-  .wuserbox .user-layer .layer-item {
-    cursor: pointer;
-    display: block;
-    width: auto;
-    height: 42px;
-    line-height: 42px;
-    color: #999;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: center;
-  }
+  /*.wuserbox .user-layer .layer-item {*/
+    /*cursor: pointer;*/
+    /*display: block;*/
+    /*width: auto;*/
+    /*height: 42px;*/
+    /*line-height: 42px;*/
+    /*color: #999;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+    /*overflow: hidden;*/
+    /*text-align: center;*/
+  /*}*/
 
   #header .middlebar {
     position: relative;
@@ -442,54 +327,23 @@
   .wsearch {
     position: relative;
   }
-  form {
-    display: block;
-  }
-  .wsearch .input-group {
-    position: relative;
+  .input-group {
     border: 1px solid #e8e8e8;
-    padding: 0 14px;
     background-color: #f5f6f7;
-    border-radius: 4px;
+    border-radius: 2px;
   }
-  .wsearch .input-text {
+  .input-text {
     border: 0;
     color: #444;
     font-size: 14px;
     line-height: 20px;
     width: 280px;
-    padding: 0;
-    outline: 0;
-    padding: 9px 10px 9px 0;
+    height: 39px;
+    /*outline: 0;*/
     background: #f5f6f7;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
-  .wsearch .btn-submit {
-    display: block;
-    border-left: 0;
-  }
-  .wsearch .btn-submit button {
-    line-height: 38px;
-    background: transparent;
-    outline: 0;
-    border: 0;
-    cursor: pointer;
-  }
-  .y-icon.icon-search {
-    font-size: 16px;
-    color: #ddd;
-  }
-  .y-icon {
-    position: relative;
-    display: inline-block;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1;
-    font-size: 12px;
-    color: #fff;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+
   }
 
   #wrapper {

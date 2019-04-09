@@ -19,7 +19,7 @@
                      class="footer-bar-action media-avatar">
                 &nbsp;{{article.auther}}&nbsp;⋅
               </a>
-              <a href="/group/6" target="_blank" class="footer-bar-action source">&nbsp;3.4万评论&nbsp;⋅</a>
+              <a href="/group/1" target="_blank" class="footer-bar-action source">&nbsp;3.4万评论&nbsp;⋅</a>
                 <span class="footer-bar-action">&nbsp;{{article.sendTime}}</span>
             </div>
           </div>
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-
     export default {
         name: "ArticleTitle",
       data(){
@@ -104,8 +103,8 @@
     line-height: 1;
     display: inline-block;
     vertical-align: middle;
-    border-color: #87a5b5!important;
-    color: #87a5b5!important;
+    border-color: #87a5b5;
+    color: #87a5b5;
   }
   a {
     color: black;

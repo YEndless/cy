@@ -127,5 +127,13 @@ export default new Router({
         title: ''
       }
     },
+
+    {
+      path: '/search',
+      component: resolve => require(['../pages/main/search.vue'], resolve),
+      meta: {
+        title: ''
+      }
+    },
   ]
 })
