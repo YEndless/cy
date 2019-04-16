@@ -14,12 +14,11 @@ import VueDirectiveImagePreviewer from 'vue-directive-image-previewer'
 import 'vue-directive-image-previewer/dist/assets/style.css'
 import VueQuillEditor from 'vue-quill-editor'
 
-
-
 Vue.use(VueQuillEditor)
 Vue.use(VueDirectiveImagePreviewer)
 Vue.use(jquery)
 Vue.prototype.$http = axios
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 

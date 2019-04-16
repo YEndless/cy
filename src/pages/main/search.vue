@@ -29,8 +29,6 @@
                              type="text"
                              placeholder="请输入关键字"
                              v-model="searchVal">
-                        <!--<el-button type="primary" icon="el-icon-search" class="icon-search">-->
-                        <!--</el-button>-->
                     </div>
                   </div>
                 </div>
@@ -39,7 +37,7 @@
             <el-footer>
               <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="文章" name="first">
-                  <div style="min-height:816px;">
+                  <div style="min-height:200px;">
                     <ul>
                       <li v-for="(article,index) in searchArticles" :key="index" >
                         <a target="_blank" :href="'/a/'+article.id">{{article.name}}</a>

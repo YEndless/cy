@@ -20,7 +20,7 @@
                 &nbsp;{{article.auther}}&nbsp;⋅
               </a>
               <a href="/group/1" target="_blank" class="footer-bar-action source">&nbsp;3.4万评论&nbsp;⋅</a>
-                <span class="footer-bar-action">&nbsp;{{article.sendTime}}</span>
+                <span class="footer-bar-action">&nbsp;{{article.sendTime| formatDate}}</span>
             </div>
           </div>
         </div>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+  import {formatDate} from './time'
+
     export default {
         name: "ArticleTitle",
       data(){
@@ -48,6 +50,33 @@
           })
 
       },
+      filters: {
+        formatDate(time) {
+          var date = new Date(time);
+          return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+        }
+      },
+
+      //方法2
+      // filters: {
+      //   formatDate: function (value) {
+      //     let date = new Date(value);
+      //     let y = date.getFullYear();
+      //     let MM = date.getMonth() + 1;
+      //     MM = MM < 10 ? ('0' + MM) : MM;
+      //     let d = date.getDate();
+      //     d = d < 10 ? ('0' + d) : d;
+      //     let h = date.getHours();
+      //     h = h < 10 ? ('0' + h) : h;
+      //     let m = date.getMinutes();
+      //     m = m < 10 ? ('0' + m) : m;
+      //     let s = date.getSeconds();
+      //     s = s < 10 ? ('0' + s) : s;
+      //     return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
+      //   }
+      // }
+
+
     }
 </script>
 

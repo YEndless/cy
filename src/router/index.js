@@ -96,7 +96,7 @@ export default new Router({
       }
     },
     {
-      path: '/test1',
+      path: '/test11',
       component: resolve => require(['../pages/main/test1.vue'], resolve),
       meta: {
         title: ''

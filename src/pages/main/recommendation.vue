@@ -102,7 +102,6 @@
         searchVal:"",
       }
     },
-
     methods: {
       logout() {
         localStorage.removeItem('loginUser')

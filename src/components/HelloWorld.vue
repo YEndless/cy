@@ -10,7 +10,7 @@
     <a href="/u">用户中心</a>
     <a href="/login">login</a>
     <h3>首页</h3>
-    <router-link :to="{ path:'/goodsDetail', query: { num: 123} }">
+    <router-link :to="{ path:'/goodsDetail', query: { id: 1} }">
       <button>显示
       </button>
     </router-link>
