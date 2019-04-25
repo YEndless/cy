@@ -100,7 +100,6 @@
       name: "main",
 
       data(){
-
         return {
           counter : 0 ,
           name : 'vue.js',

@@ -1,53 +1,108 @@
 <template>
   <div class="ugcBox-inner">
-    <ul class="bui-box ugc-tab-list">
-      <li class="bui-left ugc-tab-item current">发布图文</li>
-      <li class="bui-left ugc-tab-item">发布视频</li>
-    </ul>
-    <div class="ugc-content">
-      <div >
-        <div class="upload-box">
-                  <textarea @input="descInput"
-                            v-model="desc"
-                            placeholder="有什么新鲜事想告诉大家"
-                            class="title-input"
-                            maxlength="2000">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="发布微头条" name="first" style="height: 180px">
+        <!--<div style="min-height:200px;">-->
+        <!--</div>-->
+        <!--<ul class="bui-box ugc-tab-list">-->
+          <!--<li class="bui-left ugc-tab-item current">发布图文</li>-->
+          <!--<li class="bui-left ugc-tab-item">发布视频</li>-->
+        <!--</ul>-->
+        <div class="ugc-content">
+          <div >
+            <div class="upload-box">
+              <input v-model="name" placeholder="微头条" class="title-input"/>
+              <textarea @input="descInput"
+                        v-model="desc"
+                        placeholder="有什么新鲜事想告诉大家"
+                        class="title-input1"
+                        maxlength="2000">
                   </textarea>
-          <p class="words-number">{{txtVal}}/2000字</p>
+              <p class="words-number">{{txtVal}}/2000字</p>
 
-          <div class="bui-box upload-footer">
-            <div class="bui-left">
+              <div class="bui-box upload-footer">
+                <div class="bui-left">
                       <span class="show-image-uploader show-uploader">
                         <img src="http://p3.pstatp.com/origin/b76b00091cadfe239a6a" class="icon">
                         <span>添加图片</span>
                       </span>
-              <span class="show-emoji">
+                  <span class="show-emoji">
                         <img src="http://p3.pstatp.com/origin/b76b00091cadfe239a6a" class="icon">
                       </span>
-            </div>
-            <div class="bui-right">
-              <span class="msg-tip"></span>
-              <a class="upload-publish">发布</a>
+                </div>
+                <div class="bui-right" @click="onSubmit">
+                  <span class="msg-tip"></span>
+                  <a class="upload-publish">发布</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </el-tab-pane>
+      <el-tab-pane label="发布视频" name="second" style="height: 180px">视频1</el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script>
-    export default {
+  import qs from 'qs';
+
+  export default {
         name: "sendArticle",
       data(){
           return {
             txtVal: 0,
-            desc:""
+            desc:"",
+            id:this.$route.params.id,
+            user:JSON.parse(localStorage.getItem('loginUser')),
+            name:"",
+            activeName: 'first',
+            message1:''
           }
       },
       methods: {
         descInput(){
           this.txtVal = this.desc.length;
+        },
+        handleClick(tab, event) {
+          console.log(tab, event);
+        },
+        onSubmit() {
+          if(this.name.length != 0){
+            if (this.desc.length != 0){
+              let postData = {
+                "avatar":this.user.avatar,
+                "auther":this.user.nickName,
+                "name":this.name,
+                "category": "微头条",
+                "content": this.desc,
+                "userId":this.user.id,
+                "categoryId":1,
+                "isDelete":1,
+                "count":0
+              }
+              this.$http
+                .post('http://localhost:8080/article/save',qs.stringify(postData))
+                .then((res)=>{
+                  if (res === null) {
+                    return null ;
+                  }
+                  console.log(res)
+                  // alert(JSON.stringify(res.data)+"发布成功");
+                  // this.$message('发布成功!')
+                  this.$router.go(0)
+                  alert("发布成功");
+                })
+                .catch((res)=>{
+                  alert("失败");
+                  console.log(res,'失败')
+                })
+            } else {
+              alert("什么都还没说呢");
+            }
+          }else{
+            alert("给ta取一个名字吧");
+          }
         }
       },
     }
@@ -99,19 +154,29 @@
   }
   .upload-box .title-input {
     width: 100%;
+    height: 30px;
+    display: block;
+    font-size: 24px;
+    padding: 13px 19px;
+    border: 0;
+    /*outline: 0;*/
+    resize: none;
+    background-color: #f4f5f6;
+    transition: all .5s;
+  }
+  .upload-box .title-input1 {
+    width: 100%;
     height: 100px;
     display: block;
     font-size: 14px;
     line-height: 1.4;
     padding: 13px 19px;
     border: 0;
-    outline: 0;
+    /*outline: 0;*/
     resize: none;
     /*background-color: #f4f5f6;*/
     background-color: #fff;
     transition: all .5s;
-    animation-duration: .8s;
-    animation-fill-mode: both;
   }
   .upload-box .words-number {
     position: absolute;

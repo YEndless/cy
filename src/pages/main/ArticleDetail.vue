@@ -1,52 +1,8 @@
 <template>
-<div>
-  <!--<Header style="background: #222">-->
-    <!--<div class="layout-nav">-->
-      <!--<Menu mode="horizontal" theme="dark" active-name="1" style="background: #222">-->
-        <!--&lt;!&ndash;<MenuItem name="1">&ndash;&gt;-->
-        <!--&lt;!&ndash;<Icon type="ios-paper" />&ndash;&gt;-->
-        <!--&lt;!&ndash;夜未央&ndash;&gt;-->
-        <!--&lt;!&ndash;</MenuItem>&ndash;&gt;-->
-        <!--<MenuItem name="2">-->
-          <!--<Icon type="ios-people" />-->
-          <!--发文-->
-        <!--</MenuItem>-->
-        <!--<Submenu name="3">-->
-          <!--<template slot="title">-->
-            <!--<Icon type="ios-stats" />-->
-            <!--设置-->
-          <!--</template>-->
-          <!--<MenuGroup title="帮助">-->
-            <!--<MenuItem name="3-1">投诉</MenuItem>-->
-          <!--</MenuGroup>-->
-          <!--<MenuGroup title="头条">-->
-            <!--<MenuItem name="3-4">反馈</MenuItem>-->
-          <!--</MenuGroup>-->
-        <!--</Submenu>-->
-      <!--</Menu>-->
-    <!--</div>-->
-  <!--</Header>-->
-  <!--<div class="middlebar">-->
-    <!--<div class="middlebar-inner clearfix" style="width: 1170px;">-->
-      <!--<div class="bui-left logo-box">-->
-        <!--<a href="/" class="logo-link">-->
-          <!--<img src="//s3.pstatp.com/toutiao/static/img/logo.271e845.png" class="logo">-->
-        <!--</a>-->
-      <!--</div>-->
-      <!--<div class="bui-left chinese-tag">-->
-        <!--<a href="/" target="_blank">首页</a>-->
-        <!--/-->
-        <!--<a href="/search/?keyword=%E5" target="_blank">其他</a>-->
-        <!--/-->
-        <!--<span class="text">正文</span></div>-->
-      <!--<div class="outer1 bui-right">-->
-        <!--<Input search size="large" enter-button placeholder="请输入搜索内容" />-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div>
   <v-header1></v-header1>
 
-  <div class="bui-box container1">
+    <div class="bui-box container1">
     <div class="bui-left index-left">
       <div class="share-box">
         <a href="/" class="share-count">
@@ -55,24 +11,21 @@
         </a>
       </div>
     </div>
-    <!--<div class="container padding-set" v-for="article in articles" >-->
-      <p class="top-title">{{art.header}}</p>
+      <p class="top-title">{{art.name}}</p>
     <br/>
         <div class="author-right-top">
-          <p class="author-name">{{art.auther}}</p>
+          <p class="author-name">{{art.content}}</p>
         </div>
     <br/>
     <div class="author-right-top">
-      <p class="author-name">{{art.avatar}}</p>
+      <!--<p class="author-name">{{art.avatar}}</p>-->
     </div>
       <div class="support">
-        <p class="support-text">小礼物走一走，来简书关注我</p>
+        <p class="support-text">关注我</p>
         <div class="btn btn-pay">赞赏支持</div>
       </div>
     <!--</div>-->
   </div>
-
-
 
 </div>
 </template>
@@ -101,7 +54,9 @@
         .get('http://localhost:8080/article/'+this.$route.params.id)
         .then(function (response) {
           that.art = response.data
+          // alert(JSON.stringify(response.data)) ;
         })
+
     },
     activated() {
       this.id = this.$route.params.id;

@@ -5,22 +5,22 @@
         <div class="mode">
           <div class="title-box">
             <a :href="'/a/' + article.id" class="link" target="_blank">
-              {{article.header}}
+              {{article.name}}
             </a>
           </div >
           <div class="footer-bar">
             <div class="footer-bar-left">
               <a :href="'/a/' + article.id" target="_blank" class="footer-bar-action tag">
                 <!--军事-->
-                {{article.name}}
+                {{article.category}}
               </a>
               <a :href="'/a/' + article.id" target="_blank" class="footer-bar-action source">
                 <img :src="article.avatar" lazy="loaded"
                      class="footer-bar-action media-avatar">
                 &nbsp;{{article.auther}}&nbsp;⋅
               </a>
-              <a href="/group/1" target="_blank" class="footer-bar-action source">&nbsp;3.4万评论&nbsp;⋅</a>
-                <span class="footer-bar-action">&nbsp;{{article.sendTime| formatDate}}</span>
+              <a :href="'/a/' + article.id" target="_blank" class="footer-bar-action source">&nbsp;{{article.count}}&nbsp;评论&nbsp;⋅</a>
+                <span class="footer-bar-action cc">&nbsp;{{article.sendTime| formatDate}}</span>
             </div>
           </div>
         </div>
@@ -38,6 +38,7 @@
           return {
             id: this.$route.params.id,
             articles: [],
+            user:[]
           }
       },
       created(){
@@ -47,6 +48,13 @@
           .then(function (response) {
             // alert(JSON.stringify(response.data));
             that.articles = response.data;
+          })
+
+        this.$http
+          .get('http://localhost:8080/user/'+this.article.id)
+          .then(function (response) {
+            // alert(JSON.stringify(response.data));
+            that.user = response.data;
           })
 
       },
@@ -161,5 +169,8 @@
   }
   .bui-right {
     float: right;
+  }
+  .cc{
+    color: rgba(26, 26, 26, 0.89);
   }
 </style>

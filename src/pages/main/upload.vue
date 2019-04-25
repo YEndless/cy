@@ -86,38 +86,95 @@
         <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
+
+    <div>
+      <button @click="save1">save</button>
+      <button @click="add1">add</button>
+      <input v-model="rrr.reply" placeholder="edit me">
+      <br/>
+      <!--<p style="white-space: pre-line;">{{ message2 }}</p>-->
+      <!--<br>-->
+      <!--<textarea v-model="message2" placeholder="test">-->
+      <!--</textarea>-->
+    </div>
+
+    <div>
+      <form @submit.prevent="submit">
+        <div>
+          <input type="text" v-model="user.id">
+        </div>
+        <div>
+          <input type="text" v-model="user.reply">
+        </div>
+        <div>
+          <!--<label>-->
+            <!--<input type="radio" value="1" v-model="user.gender"> 男-->
+          <!--</label>-->
+          <!--<label>-->
+            <!--<input type="radio" value="2" v-model="user.reply"> 女-->
+          <!--</label>-->
+        </div>
+        <input type="submit" value="提交" >
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
+
+  import qs from 'qs';
+
   export default {
     data() {
       return {
         form: {
           name: '',
           type: [],
-          desc: ''
+          desc: '',
+        },
+        rrr:{
+          reply:"",
+        },
+        article:{
+
         }
       }
     },
     methods: {
       onSubmit() {
         this.$message('submit!')
-
-        var that=this;
-        this.$http
-          .post('http://localhost:8080/article/add'+{"id":id})
-          .then(function (res) {
-            that.articles=res.data
-          })
-        console.log(id)
       },
       onCancel() {
         this.$message({
           message: 'cancel!',
           type: 'warning'
         })
-      }
+      },
+
+      submit: function() {
+        var formData = JSON.stringify(this.user); // 表单数据
+        this.$http
+          .post('http://localhost:8080/reply/save',formData)
+          .then((response) => {
+          // success callback
+          formData =response.data
+          console.log(formData);
+          console.log(response.data);
+        }, (response) => {
+          // error callback
+        });
+      },
+
+      add1(){
+        this.$http
+          .post('http://localhost:8080/reply/save',this.rrr)
+          .then((res)=>{
+            console.log(res)
+          })
+          .catch((res)=>{
+          console.log(res,'失败')
+        })
+      },
     }
   }
 </script>

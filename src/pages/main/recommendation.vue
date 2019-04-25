@@ -52,7 +52,7 @@
               </div>
               <ul class="bottom">
                 <li>
-                  <a href="/c/" target="_blank">
+                  <a :href=" '/u/'+user.id" target="_blank">
                     <p class="num">{{user.follow}}</p>
                     <br >
                     <p class="word">关注</p>
@@ -60,7 +60,7 @@
                 </li>
 
                 <li>
-                  <a href="/c/u/" target="_blank">
+                  <a :href=" '/u/'+user.id" target="_blank">
                     <p class="num">{{user.follower}}</p>
                     <br>
                     <p class="word">粉丝</p>

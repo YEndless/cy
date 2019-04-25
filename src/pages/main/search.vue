@@ -52,7 +52,6 @@
           </el-container>
         </el-container>
       </el-container>
-
     </div>
   </div>
 </template>
@@ -81,10 +80,10 @@
       },
       computed:{
         searchArticles(){
-          var _this = this ;
+          var that = this ;
           var Articles = [] ;
           this.articles.map(function (article) {
-            if (article.name.search(_this.searchVal) != -1){
+            if (article.name.search(that.searchVal) != -1){
               Articles.push(article) ;
             }
           });

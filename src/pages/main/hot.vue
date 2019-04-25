@@ -1,133 +1,169 @@
-<!--<template>-->
-<!--<div>-->
-  <!--&lt;!&ndash;<Breadcrumb :style="{margin: '24px 0'}">&ndash;&gt;-->
-    <!--&lt;!&ndash;<BreadcrumbItem>发布图文</BreadcrumbItem>&ndash;&gt;-->
-    <!--&lt;!&ndash;<BreadcrumbItem>发布视频</BreadcrumbItem>&ndash;&gt;-->
-    <!--&lt;!&ndash;<BreadcrumbItem>发布问答</BreadcrumbItem>&ndash;&gt;-->
-  <!--&lt;!&ndash;</Breadcrumb>&ndash;&gt;-->
-  <!--&lt;!&ndash;<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">&ndash;&gt;-->
-    <!--&lt;!&ndash;Content&ndash;&gt;-->
-  <!--&lt;!&ndash;</Content>&ndash;&gt;-->
-  <!--<p>2222222222222222222222222222222222</p>-->
-<!--</div>-->
-<!--</template>-->
-
-<!--<script>-->
-    <!--export default {-->
-        <!--name: "hot"-->
-    <!--}-->
-<!--</script>-->
-
-<!--<style scoped>-->
-
-<!--</style>-->
 <template>
   <div>
-    <el-row class="warp">
-      <el-col :span="24" class="warp-breadcrum">
-        <el-breadcrumb separator=">">
-          <el-breadcrumb-item :to="{path:'/home'}"><b>首页</b></el-breadcrumb-item>
-          <el-breadcrumb-item>添加</el-breadcrumb-item>
-        </el-breadcrumb>
-      </el-col>
-      <!--
-      Form 组件提供了表单验证的功能，只需要通过 rule 属性传入约定的验证规则，并 Form-Item 的 prop 属性设置为需校验的字段名即可。具体可以参考官网：http://element.eleme.io/#/zh-CN/component/form
-      -->
-      <el-col :span="24" class="warp-main">
-        <el-form ref="infoForm" :model="infoForm" :rules="rules" label-width="120px">
-          <el-form-item label="标题" prop="a_title">
-            <el-input v-model="infoForm.a_title"></el-input>
-          </el-form-item>
-
-          <el-form-item label="类型" prop="a_source">
-            <el-input v-model="infoForm.a_source"></el-input>
-          </el-form-item>
-          <!--使用编辑器
-          -->
-          <el-form-item label="详细">
-            <div class="edit_container">
-              <quill-editor v-model="infoForm.a_content"
-                            ref="myQuillEditor"
-                            class="editer"
-                            :options="editorOption" @ready="onEditorReady($event)">
-              </quill-editor>
+    <ul>
+      <li v-for="article in articles" v-if="article.category=== '热点'">
+        <div class="mode">
+          <div class="title-box">
+            <a :href="'/a/' + article.id" class="link" target="_blank">
+              {{article.name}}
+            </a>
+          </div >
+          <div class="footer-bar">
+            <div class="footer-bar-left">
+              <a :href="'/a/' + article.id" target="_blank" class="footer-bar-action source">
+                <img :src="article.avatar" lazy="loaded"
+                     class="footer-bar-action media-avatar">
+                &nbsp;{{article.auther}}&nbsp;⋅
+              </a>
+              <a :href="'/a/' + article.id" target="_blank" class="footer-bar-action source">&nbsp;{{article.count}}&nbsp;评论&nbsp;⋅</a>
+              <span class="footer-bar-action">&nbsp;{{article.sendTime| formatDate}}</span>
             </div>
-          </el-form-item>
-
-          <el-form-item>
-            <el-button type="primary" @click="onSubmit">发布</el-button>
-          </el-form-item>
-        </el-form>
-      </el-col>
-
-    </el-row>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-  import { quillEditor } from 'vue-quill-editor' //调用编辑器
-  import 'quill/dist/quill.core.css';
-  import 'quill/dist/quill.snow.css';
-  import 'quill/dist/quill.bubble.css';
+  import {formatDate} from './time'
 
   export default {
-    data() {
+    name: "ArticleTitle",
+    data(){
       return {
-        infoForm: {
-          a_title: '',
-          a_source: '',
-          a_content:'',
-          editorOption: {}
-        },
-        //表单验证
-        rules: {
-          a_title: [
-            {required: true, message: '请输入标题', trigger: 'blur'}
-          ],
-          a_content: [
-            {required: true, message: '请输入详细内容', trigger: 'blur'}
-          ]
-        },
+        id: this.$route.params.id,
+        articles: [],
+        user:[]
       }
     },
-    computed: {
-      editor() {
-        return this.$refs.myQuillEditor.quill
+    created(){
+      var that = this
+      this.$http
+        .get('http://localhost:8080/article/all')
+        .then(function (response) {
+          // alert(JSON.stringify(response.data));
+          that.articles = response.data;
+        })
+
+      this.$http
+        .get('http://localhost:8080/user/'+this.article.id)
+        .then(function (response) {
+          // alert(JSON.stringify(response.data));
+          that.user = response.data;
+        })
+
+    },
+    filters: {
+      formatDate(time) {
+        var date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
       }
     },
-    mounted() {
-      //初始化
-    },
-    methods: {
-      onEditorReady(editor) {
-      },
-      onSubmit() {
-        //提交
-//this.$refs.infoForm.validate，这是表单验证
-        this.$refs.infoForm.validate((valid) => {
-          if(valid) {
-            this.$post('http://localhost:8080/article/send',this.infoForm)
-              .then(res => {
-              if(res.errCode == 200) {
-                this.$message({
-                  message: res.errMsg,
-                  type: 'success'
-                });
-                this.$router.push('http://localhost:8080/article/send');
-              } else {
-                this.$message({
-                  message: res.errMsg,
-                  type:'error'
-                });
-              }
-            });
-          }
-        });
-      }
-    },
-    components: {
-//使用编辑器
-      quillEditor
-    }
+
+    //方法2
+    // filters: {
+    //   formatDate: function (value) {
+    //     let date = new Date(value);
+    //     let y = date.getFullYear();
+    //     let MM = date.getMonth() + 1;
+    //     MM = MM < 10 ? ('0' + MM) : MM;
+    //     let d = date.getDate();
+    //     d = d < 10 ? ('0' + d) : d;
+    //     let h = date.getHours();
+    //     h = h < 10 ? ('0' + h) : h;
+    //     let m = date.getMinutes();
+    //     m = m < 10 ? ('0' + m) : m;
+    //     let s = date.getSeconds();
+    //     s = s < 10 ? ('0' + s) : s;
+    //     return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
+    //   }
+    // }
+
+
   }
 </script>
+
+<style scoped>
+  ul {
+    list-style: none;
+  }
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+  .mode {
+    position: relative;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(14, 1, 13, 0.43);
+  }
+  .title-box {
+    display: block;
+    font-size: 26px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    font-weight: 700;
+    max-height: 52px;
+  }
+
+  .link {
+    color: #222;
+  }
+
+  .footer-bar {
+    font-size: 14px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  .footer-bar-left {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+    float: left;
+  }
+  .footer-bar-action.tag {
+    font-size: 18px;
+    margin-right: 10px;
+    padding: 1px 2px;
+    border: 1px solid #eee;
+  }
+  a:visited {
+    /*color: #999;*/
+  }
+  .footer-bar-action {
+    font-size: 18px;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+    border-color: #87a5b5;
+    color: #87a5b5;
+  }
+  a {
+    color: black;
+    background: 0 0;
+    text-decoration: none;
+    outline: 0;
+    cursor: pointer;
+  }
+
+  .footer-bar-action.media-avatar {
+    color: #fff;
+    margin-right: 2px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 50%;
+    background-color: #eee;
+    overflow: hidden;
+  }
+  .footer-bar-action.source {
+    color: #777;
+    font-size: 14px;
+  }
+  .bui-right {
+    float: right;
+  }
+</style>

@@ -8,40 +8,40 @@
               <a target="_blank" class="nav-link " href="/">推荐</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_hot/" >热点</a>
+              <a target="_blank" class="nav-link " href="/hot/" >热点</a>
+            </li>
+            <!--<li class="y-left nav-item">-->
+              <!--<a target="_blank" class="nav-link " href="/ch/video/">视频</a>-->
+            <!--</li>-->
+            <li class="y-left nav-item">
+              <a target="_blank" class="nav-link " href="/picture">图片</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/video/">视频</a>
+              <a target="_blank" class="nav-link " href="/entertainment">娱乐</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_image/">图片</a>
+              <a target="_blank" class="nav-link " href="/technology">科技</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_entertainment/">娱乐</a>
+              <a target="_blank" class="nav-link " href="/car/">汽车</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_tech/">科技</a>
+              <a target="_blank" class="nav-link " href="/sports/">体育</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_car/">汽车</a>
+              <a target="_blank" class="nav-link " href="/economics/">财经</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_sports/">体育</a>
+              <a target="_blank" class="nav-link " href="/">军事</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_finance/">财经</a>
+              <a target="_blank" class="nav-link " href="/">国际</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_military/">军事</a>
+              <a target="_blank" class="nav-link " href="/">时尚</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_world/">国际</a>
-            </li>
-            <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_fashion/">时尚</a>
-            </li>
-            <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/ch/news_travel/" >旅游</a>
+              <a target="_blank" class="nav-link " href="/" >旅游</a>
             </li>
 
           </ul>
@@ -52,28 +52,12 @@
           <div>
             <div class="y-box wuserbox">
               <div class="y-right username">
-                <a class="user-head" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/92287581804/">
+                <a class="user-head" target="_blank" rel="nofollow" :href="/u/+user.id">
                   <div class="user-image">
-                    <img onload="this.style.opacity=1;" src="//p3.pstatp.com/thumb/5d4a000cdeed408dc66f" style="opacity: 1;">
+                    <img onload="this.style.opacity=1;" :src="user.avatar" style="opacity: 1;">
                   </div>
-                  <span>夜未央</span>
+                  <span>{{user.nickName}}</span>
                 </a>
-                <div class="user-layer">
-                  <ul>
-                    <li>
-                      <a class="layer-item" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/92287581804/?tab=favourite">我的收藏</a>
-                    </li>
-                    <li>
-                      <a class="layer-item" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/relation/92287581804/?tab=following">我的关注</a>
-                    </li>
-                    <li>
-                      <a class="layer-item" target="_blank" rel="nofollow" href="//www.toutiao.com/c/user/relation/92287581804/?tab=followed">我的粉丝</a>
-                    </li>
-                    <li>
-                      <a href="https://sso.toutiao.com/logout/" class="layer-item" rel="nofollow">退出</a>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -82,20 +66,7 @@
           <a class="tb-link" href="javascript:void(0)">反馈</a>
         </li>
         <li class="tb-item">
-          <a class="tb-link" href="" target="_blank">投诉侵权</a>
-        </li>
-        <li class="tb-item">
-          <a class="tb-link" href="/about/">头条产品</a>
-          <div class="layer">
-            <ul>
-              <li>
-                <a href="" class="layer-item" target="_blank">问答</a>
-              </li>
-              <li>
-                <a href="" class="layer-item" target="_blank" >头条号</a>
-              </li>
-            </ul>
-          </div>
+          <a class="tb-link" href="/about/">关于</a>
         </li>
       </ul>
     </div>
@@ -104,7 +75,12 @@
 
 <script>
     export default {
-        name: "Header1"
+        name: "Header1",
+      data(){
+          return{
+            user:JSON.parse(localStorage.getItem('loginUser'))
+          }
+      }
     }
 </script>
 

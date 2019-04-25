@@ -72,7 +72,7 @@
                                 </div>
                                 <div>
                                   <a :href="'/a/' + article.id" class="link" target="_blank">
-                                    <span>{{article.header}}</span>
+                                    <span>{{article.name}}</span>
                                   </a>
                                 </div>
                               </div>
@@ -84,10 +84,10 @@
                                     &nbsp;⋅&nbsp;0评论</a>
                                   <span class="lbtn">&nbsp;⋅&nbsp;{{article.sendTime| formatDate}}</span>
                                 </div>
-                                <div class="y-right" v-if="article.userId === users.id">
+                                <div class="y-right" v-if="user.id === users.id">
                                   <span class="delete">
                                     <!--<i class="el-icon-delete"></i>-->
-                                    <el-button type="primary" @click="deleteArticle(article.id)" icon="el-icon-delete" size="mini">
+                                    <el-button type="primary" @click="handleDelete(article)" icon="el-icon-delete" size="mini">
                                     </el-button>
                                   </span>
                                 </div>
@@ -104,18 +104,6 @@
                 </el-tab-pane>
                 <el-tab-pane label="收藏" name="third">
                   收藏2
-
-                  <!--<li v-for="(item,index) in articles" @click="del(index,item.id)" :key="item.id">-->
-                    <!--{{item.name}}-->
-                  <!--<li/>-->
-                  <tr v-for="(order, index) in articles">
-                    <td>{{order.name}}</td>
-                    <td>
-                      <button type="button" @click="delet(index)">用索引删除</button>
-                      <button type="button" @click="deleteByID(order.id)">用 ID 删除</button>
-                    </td>
-                  </tr>
-
                 </el-tab-pane>
               </el-tabs>
           </div>
@@ -161,6 +149,8 @@
             searchVal:"",
             activeName: 'first',
             articles:[],
+            user: JSON.parse(localStorage.getItem('loginUser')),
+
           }
       },
       created(){
@@ -189,26 +179,33 @@
             })
           console.log(id)
         },
-        deleteArticle(id){
-          var that=this;
-          this.$http
-            .post('http://localhost:8080/article/delete'+{"id":id})
-            .then(function (res) {
-              that.articles=res.data
-            })
-          console.log(id)
-        },
+        handleDelete(row) {
+          this.$confirm('即将删除',
+            '提示',
+            {
+              confirmButtonText:'确定',
+              cancelButtonText:'取消',
+              type:'warning'
+            }).then((response)=>{
+              this.$http
+                .delete('http://localhost:8080/article/delete1/', {
+                    params:
+                      {
+                        id:row.id
+                      }
+                  }
+                )
+                .then(response=>{
+                  this.$message({message: response.data.msg, type : 'success'})
+                })
+            }
 
-        delet(index) {
-          // 用索引删除
-          this.articles.splice(index, 1);
-        },
-        deleteByID(Id) {
-          var that=this.Id
-          this.articles.splice(this.articles.find( order => {
-            return order.id ===that;
-            console.log(that)
-          }), 1);
+          ).catch(()=>{
+            this.$message({
+              type:'info',
+              message:'删除取消'
+            })
+          })
         }
       },
       activated() {
@@ -223,7 +220,6 @@
           return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
         }
       },
-
 
       // mounted(){
       //     this.id = this.$route.query.id ;

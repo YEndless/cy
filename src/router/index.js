@@ -11,7 +11,9 @@ export default new Router({
       redirect: '/',
       component:resolve => require(['../pages/main/Index.vue'],resolve),
       meta:{
-        title : '主页'
+        title : '主页',
+        // type:'login'
+        requireAuth:true
       },
       children:[
         {
@@ -41,11 +43,51 @@ export default new Router({
           meta:{
             title:'科技'
           },
+        },
+        {
+          path:'/entertainment',
+          component:resolve => require(['../pages/main/entertainment.vue'],resolve),
+          meta:{
+            title:''
+          },
+        },
+        {
+          path:'/game',
+          component:resolve => require(['../pages/main/game.vue'],resolve),
+          meta:{
+            title:''
+          },
+        },
+        {
+          path:'/sport',
+          component:resolve => require(['../pages/main/sport.vue'],resolve),
+          meta:{
+            title:'科技'
+          },
+        },
+        {
+          path:'/car',
+          component:resolve => require(['../pages/main/car.vue'],resolve),
+          meta:{
+            title:'科技'
+          },
+        },
+        {
+          path:'/economics',
+          component:resolve => require(['../pages/main/economics.vue'],resolve),
+          meta:{
+            title:'科技'
+          },
+        },
+        {
+          path:'/funny',
+          component:resolve => require(['../pages/main/funny.vue'],resolve),
+          meta:{
+            title:'科技'
+          },
         }
 
       ]
-
-
     },
 
     {
@@ -77,6 +119,14 @@ export default new Router({
       component: resolve => require(['../pages/main/Login.vue'], resolve),
       meta: {
         title: '登录'
+      }
+    },
+
+    {
+      path: '/register',
+      component: resolve => require(['../pages/main/Register.vue'], resolve),
+      meta: {
+        title: '注册'
       }
     },
 
@@ -133,6 +183,14 @@ export default new Router({
       component: resolve => require(['../pages/main/search.vue'], resolve),
       meta: {
         title: ''
+      }
+    },
+
+    {
+      path: '/write',
+      component: resolve => require(['../pages/main/Write.vue'], resolve),
+      meta: {
+        title: '写文章'
       }
     },
   ]

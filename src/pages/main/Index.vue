@@ -11,8 +11,10 @@
                 <!--夜未央-->
               <!--</MenuItem>-->
               <MenuItem name="2">
-                <Icon type="ios-people" />
-                发文
+                <router-link to="/write" >
+                  <Icon type="ios-people" />
+                  发文
+                </router-link>
               </MenuItem>
               <Submenu name="3">
                 <template slot="title">
@@ -52,27 +54,27 @@
               </MenuItem>
               <MenuItem name="5" class="aaa">
                 <Icon type="md-chatbubbles" />
-                <a href="/test" class="bbb">娱乐</a>
+                <a href="/entertainment" class="bbb">娱乐</a>
               </MenuItem>
               <MenuItem name="6" class="aaa">
                 <Icon type="md-chatbubbles" />
-                游戏
+                <a href="/game" class="bbb">游戏</a>
               </MenuItem>
               <MenuItem name="7" class="aaa">
                 <Icon type="md-chatbubbles" />
-                体育
+                <a href="/sport" class="bbb">体育</a>
               </MenuItem>
               <MenuItem name="8" class="aaa">
                 <Icon type="md-chatbubbles" />
-                汽车
+                <a href="/car" class="bbb">汽车</a>
               </MenuItem>
               <MenuItem name="9" class="aaa">
                 <Icon type="md-chatbubbles" />
-                财经
+                <a href="/economics" class="bbb">财经</a>
               </MenuItem>
               <MenuItem name="10" class="aaa">
                 <Icon type="md-chatbubbles" />
-                搞笑
+                <a href="/funny" class="bbb">搞笑</a>
               </MenuItem>
             </MenuGroup>
               <Dropdown placement="right-end" class="aaa">
@@ -166,41 +168,3 @@
     background: white;
   }
 </style>
-<!--<template>-->
-<!--<div>-->
-  <!--<h2>Ess  ential Links111111111111</h2>-->
-  <!--<router-link to="/test">测试</router-link>-->
-  <!--<ul>-->
-    <!--<li v-for="user in users">-->
-      <!--<p>{{user.id}}</p>-->
-      <!--<p>{{user.name}}</p>-->
-      <!--&lt;!&ndash;<p>{{user.PhoneNumb}}</p>&ndash;&gt;-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</div>-->
-<!--</template>-->
-
-<!--<script>-->
-    <!--export default {-->
-        <!--name: "Index",-->
-      <!--data(){-->
-          <!--return {-->
-            <!--users:[],-->
-          <!--}-->
-      <!--},-->
-      <!--created(){-->
-        <!--var that = this-->
-        <!--this.$http-->
-          <!--.get('http://localhost:8090/user/all')-->
-          <!--.then(function (response) {-->
-            <!--// alert(JSON.stringify(response.data));-->
-            <!--that.users = response.data;-->
-          <!--})-->
-      <!--}-->
-    <!--}-->
-
-<!--</script>-->
-
-<!--<style scoped>-->
-
-<!--</style>-->
