@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>王者荣耀{{ this.$route.query.id }}</h3>
+    <h3>王{{ this.$route.query.id }}</h3>
     <li v-for="article in articles">
       <a target="_blank">{{article.id}}</a>
       <p>aaa</p>

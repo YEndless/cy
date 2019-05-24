@@ -10,9 +10,6 @@
             <li class="y-left nav-item">
               <a target="_blank" class="nav-link " href="/hot/" >热点</a>
             </li>
-            <!--<li class="y-left nav-item">-->
-              <!--<a target="_blank" class="nav-link " href="/ch/video/">视频</a>-->
-            <!--</li>-->
             <li class="y-left nav-item">
               <a target="_blank" class="nav-link " href="/picture">图片</a>
             </li>
@@ -26,7 +23,7 @@
               <a target="_blank" class="nav-link " href="/car/">汽车</a>
             </li>
             <li class="y-left nav-item">
-              <a target="_blank" class="nav-link " href="/sports/">体育</a>
+              <a target="_blank" class="nav-link " href="/sport/">体育</a>
             </li>
             <li class="y-left nav-item">
               <a target="_blank" class="nav-link " href="/economics/">财经</a>
@@ -63,11 +60,11 @@
           </div>
         </li>
         <li class="tb-item">
-          <a class="tb-link" href="javascript:void(0)">反馈</a>
+          <a class="tb-link" href="/feedback">反馈or投诉</a>
         </li>
-        <li class="tb-item">
-          <a class="tb-link" href="/about/">关于</a>
-        </li>
+        <!--<li class="tb-item">-->
+          <!--<a class="tb-link" href="/feedback">投诉</a>-->
+        <!--</li>-->
       </ul>
     </div>
   </div>

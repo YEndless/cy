@@ -96,6 +96,8 @@
     position: relative;
     padding: 20px 0;
     border-bottom: 1px solid rgba(14, 1, 13, 0.43);
+    width: 1200px;
+    overflow: hidden;
   }
   .title-box {
     display: block;

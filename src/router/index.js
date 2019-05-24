@@ -87,6 +87,7 @@ export default new Router({
           },
         }
 
+
       ]
     },
 
@@ -97,7 +98,13 @@ export default new Router({
         title: 'test'
       }
     },
-
+    {
+      path: '/test1',
+      component: resolve => require(['../pages/main/test1.vue'], resolve),
+      meta: {
+        title: ''
+      }
+    },
     {
       path: '/a/:id',
       component: resolve => require(['../pages/main/ArticleDetail.vue'], resolve),
@@ -193,5 +200,29 @@ export default new Router({
         title: '写文章'
       }
     },
+
+    {
+      path: '/feedback',
+      component: resolve => require(['../pages/main/feedback.vue'], resolve),
+      meta: {
+        title: 'ad'
+      }
+    },
+    {
+      path: '/add',
+      component: resolve => require(['../pages/main/add.vue'], resolve),
+      meta: {
+        title: 'add'
+      },
+      children:[
+        {
+          path:'/updatePassword',
+          component:resolve => require(['../pages/main/updatePassword.vue'],resolve),
+          meta:{
+            title:''
+          },
+        }
+      ]
+    }
   ]
 })

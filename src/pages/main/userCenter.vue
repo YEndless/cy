@@ -2,7 +2,6 @@
     <div class="y-wrap">
       <div id="header">
         <v-header1></v-header1>
-
         <div class="middlebar">
           <div class="y-box middlebar-inner">
             <div class="y-left logo-box">
@@ -51,8 +50,10 @@
                   </a>
                 </li>
               </ul>
-              <span class="btn-publish ">
-                <span>发布微头条</span>
+              <span class="btn-publish" >
+                <router-link to="/write">
+                  <span style="color: white">发布微头条</span>
+                </router-link>
               </span>
             </div>
           </div>
@@ -79,9 +80,7 @@
                               <div class="y-box footer">
                                 <div class="y-left">
                                   <a class="lbtn"target="_blank" href="/">
-                                    &nbsp;⋅&nbsp;0赞</a>
-                                  <a class="lbtn" target="_blank" href="/">
-                                    &nbsp;⋅&nbsp;0评论</a>
+                                    &nbsp;⋅&nbsp;{{article.count}}赞</a>
                                   <span class="lbtn">&nbsp;⋅&nbsp;{{article.sendTime| formatDate}}</span>
                                 </div>
                                 <div class="y-right" v-if="user.id === users.id">
@@ -99,8 +98,42 @@
                     </ul>
                   </div>
                 </el-tab-pane>
-                <el-tab-pane label="视频" name="second">视频1
-
+                <el-tab-pane label="图片" name="second">
+                  <div style="min-height:200px;" >
+                    <ul  v-for="pic in pictures "  v-if="pic.userId === users.id">
+                      <li class="item" >
+                        <h1>{{pic.header}}</h1>
+                        <div class="item-inner y-box">
+                          <div class="normal  no-image">
+                            <div class="rbox-inner">
+                              <div>
+                                <div>
+                                </div>
+                                <div>
+                                  <img :src="pic.pic" class="pic1" v-image-preview>
+                                </div>
+                                <div>
+                                </div>
+                              </div>
+                              <div class="y-box footer">
+                                <div class="y-left">
+                                  <a class="lbtn"target="_blank" href="/">
+                                    &nbsp;⋅&nbsp;{{pic.zan}}赞</a>
+                                  <span class="lbtn">&nbsp;⋅&nbsp;{{pic.sendTime| formatDate}}</span>
+                                </div>
+                                <div class="y-right" v-if="user.id === users.id">
+                                  <span class="delete">
+                                    <el-button type="primary" @click="handleDeletePic(pic)" icon="el-icon-delete" size="mini">
+                                    </el-button>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </el-tab-pane>
                 <el-tab-pane label="收藏" name="third">
                   收藏2
@@ -150,6 +183,7 @@
             activeName: 'first',
             articles:[],
             user: JSON.parse(localStorage.getItem('loginUser')),
+            pictures:[]
 
           }
       },
@@ -159,26 +193,36 @@
           .get('http://localhost:8080/user/'+this.$route.params.id)
           .then(function (response) {
             that.users=response.data
-          }),
-          this.$http
-            .get('http://localhost:8080/article/all')
-            .then(function (res) {
-              that.articles=res.data
-            })
+          })
+        this.$http
+          .get('http://localhost:8080/picture/all')
+          .then(function (res) {
+            that.pictures=res.data
+          })
+        this.del();
+        this.delPic() ;
       },
       methods: {
+        del(){
+          var that=this
+            this.$http
+              .get('http://localhost:8080/article/all')
+              .then(function (res) {
+                that.articles=res.data
+              })
+        },
+        delPic(){
+          var that=this
+          this.$http
+            .get('http://localhost:8080/picture/all')
+            .then(function (res) {
+              that.pictures=res.data
+            })
+        },
         handleClick(tab, event) {
           console.log(tab, event);
         },
-        deleteArticle1(id){
-          var that=this;
-          this.$http
-            .delete('http://localhost:8080/article/delete',{data:id})
-            .then(function (res) {
-              // that.articles=res.data
-            })
-          console.log(id)
-        },
+
         handleDelete(row) {
           this.$confirm('即将删除',
             '提示',
@@ -195,8 +239,45 @@
                       }
                   }
                 )
+            .then(response=>{
+                  this.$message({
+                    type:'success',
+                    message:'删除成功'
+                  })
+                  this.del()
+                })
+            }
+
+          ).catch(()=>{
+            this.$message({
+              type:'info',
+              message:'删除取消'
+            })
+          })
+        },
+
+        handleDeletePic(row) {
+          this.$confirm('即将删除',
+            '提示',
+            {
+              confirmButtonText:'确定',
+              cancelButtonText:'取消',
+              type:'warning'
+            }).then((response)=>{
+              this.$http
+                .delete('http://localhost:8080/picture/delete1/', {
+                    params:
+                      {
+                        id:row.id
+                      }
+                  }
+                )
                 .then(response=>{
-                  this.$message({message: response.data.msg, type : 'success'})
+                  this.$message({
+                    type:'success',
+                    message:'删除成功'
+                  })
+                  this.delPic()
                 })
             }
 
@@ -219,16 +300,7 @@
           var date = new Date(time);
           return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
         }
-      },
-
-      // mounted(){
-      //     this.id = this.$route.query.id ;
-      //     this.$http
-      //       .get('http://localhost:8080/user'+this.id)
-      //       .then((res)=> {
-      //         this.aaa = res.data.id ;
-      //       })
-      // }
+      }
     }
 </script>
 
@@ -236,8 +308,6 @@
   .y-wrap {
     min-height: 100%;
     margin-bottom: -72px;
-  }
-  .y-wrap {
     margin-right: auto;
     margin-left: auto;
     text-align: left;
@@ -464,6 +534,7 @@
     margin-right: 5px;
     border-radius: 50%;
   }
+
   .name {
     display: inline-block;
     vertical-align: middle;
@@ -520,9 +591,6 @@
     font-size: 24px;
     color: #222;
   }
-  b, em, h1, h2, h3, h4, h5, h6, strong {
-    font-weight: 400;
-  }
   .statistics h3 i {
     font-weight: 700;
   }
@@ -530,5 +598,10 @@
     font-size: 14px;
     color: #777;
     margin-top: 4px;
+  }
+
+  .pic1{
+    width: 40%;
+    height: 40%;
   }
 </style>

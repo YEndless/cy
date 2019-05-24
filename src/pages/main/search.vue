@@ -38,15 +38,38 @@
               <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="文章" name="first">
                   <div style="min-height:200px;">
-                    <ul>
-                      <li v-for="(article,index) in searchArticles" :key="index" >
-                        <a target="_blank" :href="'/a/'+article.id">{{article.name}}</a>
+                    <ul v-for="(article,index) in searchArticles" :key="index">
+                      <li class="item" >
+                        <div class="item-inner y-box">
+                          <div class="normal ">
+                            <div class="rbox-inner">
+                              <div>
+                                <div id="aaa">
+                                  <img :src="article.avatar" class="avatar">
+                                  <span class="name">{{article.auther}}</span>
+                                </div>
+                                <div>
+                                  <a target="_blank" :href="'/a/'+article.id" class="t_word">
+                                    {{article.name}}
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="y-box footer">
+                                <div class="y-left">
+                                  <a class="lbtn"target="_blank" href="/">
+                                    &nbsp;⋅&nbsp;{{article.count}}赞</a>
+                                  <span class="lbtn">&nbsp;⋅&nbsp;{{article.sendTime| formatDate}}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </li>
                     </ul>
                   </div>
                 </el-tab-pane>
-                <el-tab-pane label="视频" name="second">视频1</el-tab-pane>
-                <el-tab-pane label="用户" name="third">用户1</el-tab-pane>
+                <el-tab-pane label="图片" name="second">接口待提供</el-tab-pane>
+                <el-tab-pane label="用户" name="third">接口哪儿去了</el-tab-pane>
               </el-tabs>
             </el-footer>
           </el-container>
@@ -98,6 +121,23 @@
           .then(function (res) {
             that.articles = res.data ;
           })
+      },
+      filters: {
+        formatDate: function (value) {
+          let date = new Date(value);
+          let y = date.getFullYear();
+          let MM = date.getMonth() + 1;
+          MM = MM < 10 ? ('0' + MM) : MM;
+          let d = date.getDate();
+          d = d < 10 ? ('0' + d) : d;
+          let h = date.getHours();
+          h = h < 10 ? ('0' + h) : h;
+          let m = date.getMinutes();
+          m = m < 10 ? ('0' + m) : m;
+          let s = date.getSeconds();
+          s = s < 10 ? ('0' + s) : s;
+          return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
+        }
       }
     }
 </script>
@@ -119,19 +159,12 @@
     margin-bottom: 16px;
     z-index: 2;
   }
-  .y-wrap .y-box {
-    display: block;
-  }
-
   .y-wrap .y-left {
     float: left;
   }
 
   li {
     list-style: none;
-  }
-  .y-right {
-    float: right;
   }
   #header .middlebar {
     position: relative;
@@ -174,5 +207,79 @@
     background: #f5f6f7;
     box-sizing: border-box;
     text-align: center;
+  }
+  .t_word{
+    font-size: 20px;
+  }
+  .input-group {
+    border: 1px solid #e8e8e8;
+    background-color: #f5f6f7;
+    border-radius: 2px;
+  }
+  .input-text {
+    border: 0;
+    color: #444;
+    font-size: 14px;
+    line-height: 20px;
+    width: 280px;
+    height: 39px;
+    /*outline: 0;*/
+    background: #f5f6f7;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .item {
+    position: relative;
+    /*min-height: 180px;*/
+    border-bottom: 1px solid grey;
+  }
+
+  .item-inner {
+    position: relative;
+    padding: 10px 0;
+    /*margin: 0 24px;*/
+    border-bottom: 1px solid #f4f5f6;
+  }
+  .y-box {
+    display: block;
+  }
+  .normal {
+    position: relative;
+    font-size: 0;
+    overflow: hidden;
+  }
+  .rbox-inner {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+  }
+  .avatar {
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    border-radius: 50%;
+  }
+  .name {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-right: 5px;
+  }
+  .footer {
+    font-size: 12px;
+    color: #999;
+    height: 18px;
+    line-height: 18px;
+    margin-top: 10px;
+  }
+  .lbtn {
+    float: left;
+    display: inline-block;
+    color: #777;
+    font-size: 14px;
   }
 </style>

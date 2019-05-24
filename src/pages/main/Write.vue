@@ -1,6 +1,5 @@
 <template>
   <div >
-
     <el-container>
       <el-header>
         <h1>
@@ -51,9 +50,20 @@
                   <el-option label="其他" value="其他"></el-option>
                 </el-select>
               </el-form-item>
-
+              <!--<el-form-item label="内容">-->
+                <!--<el-input type="textarea" v-model="form.content" :rows="10"></el-input>-->
+              <!--</el-form-item>-->
               <el-form-item label="内容">
-                <el-input type="textarea" v-model="form.content" :rows="10"></el-input>
+                <quill-editor class="content1"
+                              ref="myTextEditor"
+                              v-model="form.content"
+                              :options="editorOption"
+                              @blur="onEditorBlur($event)"
+                              @focus="onEditorFocus($event)"
+                              @change="onEditorChange($event)">
+
+                >
+                </quill-editor>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">立即发布</el-button>
@@ -78,6 +88,10 @@
 </template>
 <script>
   import qs from 'qs';
+  import 'quill/dist/quill.core.css';
+  import 'quill/dist/quill.snow.css';
+  import 'quill/dist/quill.bubble.css';
+  import { quillEditor } from 'vue-quill-editor';
 
   export default {
     data() {
@@ -89,11 +103,30 @@
         },
         id:this.$route.params.id,
         user:JSON.parse(localStorage.getItem('loginUser')),
+        editorOption: {
+          placeholder: '请编辑您要发布的内容...(4000字以内)',
+          // modules: {
+          //   toolbar: [
+          //     ['bold'],
+          //     ['image'],
+          //     [{ 'header': 1 }],
+          //     [{ 'size': ['small', false, 'large', 'huge'] }],
+          //     [{ 'color': [] }, { 'background': [] }],
+          //     [{ 'font': [] }],
+          //     [{ 'align': [] }]
+          //   ]
+          // }
+        }
       }
     },
     methods: {
-      onSubmit() {
+      onEditorReady(editor) { // 准备编辑器
 
+      },
+      onEditorBlur(){}, // 失去焦点事件
+      onEditorFocus(){}, // 获得焦点事件
+      onEditorChange(){}, // 内容改变事件
+      onSubmit() {
         if(this.form.name.length != 0){
           if (this.form.content.length != 0){
             let postData = {
@@ -107,15 +140,29 @@
               "isDelete":1,
               "count":0
             }
+            let postData1 = {
+              "articleid": this.id,
+              "status":1,
+              "type":"点赞",
+              "userId":this.user.id,
+              "typeId":1,
+            }
             this.$http
               .post('http://localhost:8080/article/save',qs.stringify(postData))
               .then((res)=>{
                 console.log(res)
-                alert(JSON.stringify(res.data));
+                // alert(JSON.stringify(res.data));
               })
               .catch((res)=>{
                 alert("失败");
                 console.log(res,'失败')
+              })
+
+            this.$http
+              .post('http://localhost:8080/likes/save',qs.stringify(postData1))
+              .then((res)=>{
+                console.log(res)
+                // alert(JSON.stringify(res.data));
               })
           } else {
             alert("什么都还没说呢");
@@ -124,7 +171,12 @@
           alert("给ta取一个名字吧");
         }
       }
-    }
+    },
+    computed: {
+      editor() {
+        return this.$refs.myQuillEditor.quill;
+      },
+    },
   }
 </script>
 <style>
@@ -147,5 +199,8 @@
     color: #333;
     /*text-align: center;*/
     line-height: 160px;
+  }
+  .content1{
+    height: 400px;
   }
 </style>

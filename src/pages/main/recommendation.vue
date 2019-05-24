@@ -18,7 +18,6 @@
                   </router-link>
               </div>
             </div>
-
           </div>
           <div class="inner">
             <div v-if="user === null" class="login">
@@ -68,7 +67,17 @@
                 </li>
               </ul>
             </div>
+
+            <div v-for="item in imgList" :key="item.id">
+              <el-card>
+                  <img :src="item.adPic" class="banner_img"/>
+                  <a :href="item.adUrl">
+                    <h5 style="text-align: center">海贼王来啦</h5>
+                  </a>
+              </el-card>
+            </div>
           </div>
+
         </div>
       </div>
     </Col>
@@ -79,6 +88,9 @@
           <v-send-article></v-send-article>
         </div>
         <v-article-title></v-article-title>
+        <div class="">
+          <v-ad></v-ad>
+        </div>
       </div>
     </Col>
   </Row>
@@ -87,19 +99,24 @@
 <script>
   import vSendArticle from './sendArticle.vue'
   import 'jquery/dist/jquery.min'
-
   import vArticleTitle from './ArticleTitle'
+  import vAd from './Ad'
+  import vAd2 from './Ad2'
+
   export default {
     name: "recommendation",
     components: {
       vArticleTitle,
-      vSendArticle
+      vSendArticle,
+      vAd,
+      vAd2
     },
     data() {
       return {
         user: JSON.parse(localStorage.getItem('loginUser')),
         articleList:[],
         searchVal:"",
+        imgList:[]
       }
     },
     methods: {
@@ -110,13 +127,18 @@
     },
     created(){
       var that=this
+      // this.$http
+      //   .get('http://localhost:8080/article/'+that.id)
+      //   .then(function (response) {
+      //     that.articleList=response.data
+      //   })
       this.$http
-        .get('http://localhost:8080/article'+that.id)
+        .get('http://localhost:8080/ad/all')
         .then(function (response) {
-          that.articleList=response.data
+          // alert(JSON.stringify(response.data));
+          that.imgList = response.data;
         })
-    },
-
+    }
   }
 </script>
 
@@ -278,7 +300,6 @@
     white-space: nowrap;
   }
   .index-content {
-    /*width: 600px;*/
     width: 100%;
   }
 
@@ -293,7 +314,9 @@
   }
   li {
     display: list-item;
-    text-align: -webkit-match-parent;
   }
-
+  .image {
+    width: 100%;
+    display: block;
+  }
 </style>
