@@ -15,7 +15,7 @@
     "bootstrap-vue": "^2.0.0-rc.15",
     "element-ui": "^2.6.3",
     "iview": "^3.3.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "qiniu-js": "^2.5.4",
     "qs": "^6.7.0",
     "vue": "^2.5.2",
